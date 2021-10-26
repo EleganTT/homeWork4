@@ -17,7 +17,6 @@ class CompletedTasksTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.reloadData()
         presenter.output = self
-        print(tasks)
     }
 
     // MARK: - Table view data source

@@ -50,5 +50,6 @@ class AddTaskViewController: UIViewController {
             .bind(to: task.name)
         descriptionTextField.reactive.text.ignoreNils()
             .bind(to: task.descrpt)
+        deadlineDatePicker.reactive.date.bind(to: task.deadline)
     }
 }
