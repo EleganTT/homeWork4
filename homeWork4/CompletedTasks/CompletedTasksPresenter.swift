@@ -8,26 +8,25 @@
 import Foundation
 
 protocol CompletedTasksPresenterInput {
-    var output: CompletedTasksPresenterOutput! { get set }
-    
-    func getTasks() -> Array<CompletedAndDeletedTasks>
+    func getTasks()
 }
 
 protocol CompletedTasksPresenterOutput {
-    func updateTasks()
+    func updateTasks(tasks: Array<CompletedAndDeletedTasks>)
 }
 
-class CompletedTasksPresenter: CompletedTasksPresenterInput {
-    func getTasks() -> Array<CompletedAndDeletedTasks> {
-        return interactor.getTasks()
+class CompletedTasksPresenter: CompletedTasksInteractorOutput, CompletedTasksPresenterInput {
+    func getTasks() {
+        interactor.provideTasks()
+    }
+
+    func receiveTasks(tasks: Array<CompletedAndDeletedTasks>) {
+        let newTasks = tasks
+        output.updateTasks(tasks: newTasks)
     }
     
     var output: CompletedTasksPresenterOutput!
     var interactor: CompletedTasksInteractorInput!
     var router: CompletedTasksRouterInput!
-    
-}
-
-extension CompletedTasksPresenter: CompletedTasksRouterOutput, CompletedTasksInteractorOutput {
     
 }

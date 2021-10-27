@@ -7,35 +7,38 @@
 
 import UIKit
 
-class CompletedTasksTableViewController: UITableViewController {
+class CompletedTasksTableViewController: UITableViewController, CompletedTasksPresenterOutput {
+    func updateTasks(tasks: Array<CompletedAndDeletedTasks>) {
+        newTasks = tasks
+    }
     
-    var presenter: CompletedTasksPresenterInput! = CompletedTasksPresenter()
+    var presenter: CompletedTasksPresenterInput!
     
-    var tasks = PersistenceCompletedAndDeletedTasks().loadData()
+    var newTasks = Array<CompletedAndDeletedTasks>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
-        presenter.output = self
+        
+        presenter.getTasks()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return newTasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CompletedTasksTableViewCell", for: indexPath) as! CompletedTasksTableViewCell
 
-        cell.initCell(title: tasks[indexPath.row].name, description: tasks[indexPath.row].descrpt, date: tasks[indexPath.row].date, deadline: tasks[indexPath.row].deadline, status: tasks[indexPath.row].status)
+        cell.initCell(title: newTasks[indexPath.row].name, description: newTasks[indexPath.row].descrpt, date: newTasks[indexPath.row].date, deadline: newTasks[indexPath.row].deadline, status: newTasks[indexPath.row].status)
 
         return cell
     }
 
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedTask = tasks[indexPath.row]
+        let selectedTask = newTasks[indexPath.row]
         
         let alertController = UIAlertController(title: "Желаете восстановить задание?", message: "", preferredStyle: .alert)
         
@@ -61,12 +64,5 @@ class CompletedTasksTableViewController: UITableViewController {
         
         present(alertController, animated: true, completion: nil)
         
-    }
-}
-
-
-extension CompletedTasksTableViewController: CompletedTasksPresenterOutput {
-    func updateTasks() {
-
     }
 }

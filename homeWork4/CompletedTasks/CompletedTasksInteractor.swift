@@ -9,17 +9,19 @@ import Foundation
 
 
 protocol CompletedTasksInteractorInput {
-    func getTasks() -> Array<CompletedAndDeletedTasks>
+    func provideTasks()
 }
 
 protocol CompletedTasksInteractorOutput {
-    
+    func receiveTasks(tasks: Array<CompletedAndDeletedTasks>)
 }
 
 class CompletedTasksInteractor: CompletedTasksInteractorInput {
-    func getTasks() -> Array<CompletedAndDeletedTasks> {
+    var output: CompletedTasksInteractorOutput!
+    
+    func provideTasks(){
         let tasks = PersistenceCompletedAndDeletedTasks().loadData()
         let array = Array(tasks)
-        return array
+        output.receiveTasks(tasks: array)
     }
 }
