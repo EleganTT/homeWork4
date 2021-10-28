@@ -23,5 +23,6 @@ class CompletedTasksInteractor: CompletedTasksInteractorInput {
         let tasks = PersistenceCompletedAndDeletedTasks().loadData()
         let array = Array(tasks)
         output.receiveTasks(tasks: array)
+        print(array)
     }
 }

@@ -31,8 +31,6 @@ class Task {
     let descrpt = Property(String())
     let date = Property(Date())
     let deadline = Property(Date())
-    
-
 }
 
 class PersistenceActualTasks {

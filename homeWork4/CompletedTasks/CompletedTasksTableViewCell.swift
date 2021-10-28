@@ -35,7 +35,7 @@ class CompletedTasksTableViewCell: UITableViewCell {
         descriptionLabel.text = description
         let date = Date()
         dateLabel.text = "\(date.getFormattedDate())"
-        deadlineLabel.text = "Deadline: \(date.getFormattedDate())"
+        deadlineLabel.text = "Deadline: \(deadline.getFormattedDate())"
         statusLabel.text = status
         
         if statusLabel.text == "completed" {

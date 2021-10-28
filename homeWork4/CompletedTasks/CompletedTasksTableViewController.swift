@@ -19,7 +19,6 @@ class CompletedTasksTableViewController: UITableViewController, CompletedTasksPr
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
-        
         presenter.getTasks()
     }
 
