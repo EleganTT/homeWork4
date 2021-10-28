@@ -18,6 +18,7 @@ protocol CompletedTasksPresenterOutput {
 class CompletedTasksPresenter: CompletedTasksInteractorOutput, CompletedTasksPresenterInput {
     func getTasks() {
         interactor.provideTasks()
+        
     }
 
     func receiveTasks(tasks: Array<CompletedAndDeletedTasks>) {
