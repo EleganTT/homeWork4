@@ -7,26 +7,22 @@
 
 import Foundation
 
-protocol CompletedTasksPresenterInput {
-    func getTasks()
+protocol CompletedTasksPresenterProtocol {
+    func fetchAllTasks() -> Array<CompletedAndDeletedTasks>
 }
 
-protocol CompletedTasksPresenterOutput {
-    func updateTasks(tasks: Array<CompletedAndDeletedTasks>)
-}
-
-class CompletedTasksPresenter: CompletedTasksInteractorOutput, CompletedTasksPresenterInput {
-    func getTasks() {
-        interactor.provideTasks()
-    }
-
-    func receiveTasks(tasks: Array<CompletedAndDeletedTasks>) {
-        let newTasks = tasks
-        output.updateTasks(tasks: newTasks)
+class CompletedTasksPresenter: CompletedTasksPresenterProtocol {
+    
+    var view: CompletedTasksTableViewProtocol!
+    var interactor: CompletedTasksInteractorProtocol!
+    
+    func fetchAllTasks() -> Array<CompletedAndDeletedTasks> {
+        return interactor.getAllTasks()
     }
     
-    var output: CompletedTasksPresenterOutput!
-    var interactor: CompletedTasksInteractorInput!
-    var router: CompletedTasksRouterInput!
-    
+    required init(view: CompletedTasksTableViewProtocol) {
+        self.view = view
+    }
+
+
 }

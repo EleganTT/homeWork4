@@ -8,21 +8,20 @@
 import Foundation
 
 
-protocol CompletedTasksInteractorInput {
-    func provideTasks()
+protocol CompletedTasksInteractorProtocol {
+    func getAllTasks() -> Array<CompletedAndDeletedTasks>
 }
 
-protocol CompletedTasksInteractorOutput {
-    func receiveTasks(tasks: Array<CompletedAndDeletedTasks>)
-}
-
-class CompletedTasksInteractor: CompletedTasksInteractorInput {
-    var output: CompletedTasksInteractorOutput!
-    
-    func provideTasks(){
+class CompletedTasksInteractor: CompletedTasksInteractorProtocol {
+    func getAllTasks() -> Array<CompletedAndDeletedTasks> {
         let tasks = PersistenceCompletedAndDeletedTasks().loadData()
         let array = Array(tasks)
-        output.receiveTasks(tasks: array)
-        print(array)
+        return array
+    }
+    
+    var presenter: CompletedTasksPresenterProtocol!
+    
+    required init(presenter: CompletedTasksPresenterProtocol) {
+        self.presenter = presenter
     }
 }

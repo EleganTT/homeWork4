@@ -7,19 +7,22 @@
 
 import UIKit
 
-class CompletedTasksTableViewController: UITableViewController, CompletedTasksPresenterOutput {
-    func updateTasks(tasks: Array<CompletedAndDeletedTasks>) {
-        newTasks = tasks
-    }
-    
-    var presenter: CompletedTasksPresenterInput!
+protocol CompletedTasksTableViewProtocol {
+}
+
+class CompletedTasksTableViewController: UITableViewController, CompletedTasksTableViewProtocol {
     
     var newTasks = Array<CompletedAndDeletedTasks>()
+    
+    var presenter: CompletedTasksPresenterProtocol!
+    
+    var configurator: CompletedTasksConfiguratorProtocol = CompletedTasksConfigurator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
-        presenter.getTasks()
+        configurator.configure(with: self)
+        newTasks = presenter.fetchAllTasks()
     }
 
     // MARK: - Table view data source
@@ -45,6 +48,8 @@ class CompletedTasksTableViewController: UITableViewController, CompletedTasksPr
             PersistenceActualTasks().addTask(task: selectedTask, status: "not completed")
             PersistenceCompletedAndDeletedTasks().deleteData(item: selectedTask)
             
+            self.newTasks = self.presenter.fetchAllTasks()
+            
             tableView.reloadData()
         }
         alertActionDone.setValue(UIColor.systemBlue, forKey: "titleTextColor")
@@ -52,14 +57,14 @@ class CompletedTasksTableViewController: UITableViewController, CompletedTasksPr
         let alertActionDelete = UIAlertAction(title: "Удалить", style: .default) { (alert) in
             PersistenceCompletedAndDeletedTasks().deleteData(item: selectedTask)
             
+            self.newTasks = self.presenter.fetchAllTasks()
+            
             tableView.reloadData()
         }
         alertActionDelete.setValue(UIColor.systemRed, forKey: "titleTextColor")
         
         alertController.addAction(alertActionDone)
         alertController.addAction(alertActionDelete)
-
-
         
         present(alertController, animated: true, completion: nil)
         

@@ -21,6 +21,7 @@
 		03B8943027202A080061591B /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B8942F27202A080061591B /* AddTaskViewModel.swift */; };
 		03B89434272180790061591B /* CompletedTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B89433272180790061591B /* CompletedTasksTableViewController.swift */; };
 		03B894362722FC990061591B /* CompletedTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B894352722FC990061591B /* CompletedTasksTableViewCell.swift */; };
+		03EEF32A273132DF003E41F7 /* CompletedTasksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EEF329273132DF003E41F7 /* CompletedTasksConfigurator.swift */; };
 		4C0DD1304C7C51702A2BDA09 /* Pods_homeWork4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E0197F5C57E2B01606A756 /* Pods_homeWork4.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		03B8942F27202A080061591B /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		03B89433272180790061591B /* CompletedTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksTableViewController.swift; sourceTree = "<group>"; };
 		03B894352722FC990061591B /* CompletedTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksTableViewCell.swift; sourceTree = "<group>"; };
+		03EEF329273132DF003E41F7 /* CompletedTasksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTasksConfigurator.swift; sourceTree = "<group>"; };
 		A0E0197F5C57E2B01606A756 /* Pods_homeWork4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_homeWork4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF17790E0E496C41A4A498FF /* Pods-homeWork4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeWork4.release.xcconfig"; path = "Target Support Files/Pods-homeWork4/Pods-homeWork4.release.xcconfig"; sourceTree = "<group>"; };
 		C5E2F1CFF5D34DFF7464B1D1 /* Pods-homeWork4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-homeWork4.debug.xcconfig"; path = "Target Support Files/Pods-homeWork4/Pods-homeWork4.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				03B89433272180790061591B /* CompletedTasksTableViewController.swift */,
+				03EEF329273132DF003E41F7 /* CompletedTasksConfigurator.swift */,
 				03B894352722FC990061591B /* CompletedTasksTableViewCell.swift */,
 				035EF4DE2726979B00B82D82 /* CompletedTasksPresenter.swift */,
 				035EF4E22726983600B82D82 /* CompletedTasksInteractor.swift */,
@@ -271,6 +274,7 @@
 			files = (
 				035F6BD8271EA828001BAEFD /* AppDelegate.swift in Sources */,
 				03B8943027202A080061591B /* AddTaskViewModel.swift in Sources */,
+				03EEF32A273132DF003E41F7 /* CompletedTasksConfigurator.swift in Sources */,
 				03B8942A272013F70061591B /* TasksTableViewController.swift in Sources */,
 				03B8942C272015710061591B /* TaskTableViewCell.swift in Sources */,
 				03B89434272180790061591B /* CompletedTasksTableViewController.swift in Sources */,
